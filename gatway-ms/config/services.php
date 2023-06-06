@@ -31,4 +31,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'ms_authorization' => [
+        'url' => env('MS_AUTHORIZATION_URL', 'http://authorization_url')
+    ],
+    
+    'ms_task_management' => [
+        'url' => env('MS_TODO_URL', 'http://task-managment-ms_url')
+    ],
 ];
