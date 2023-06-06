@@ -1,0 +1,50 @@
+version: "3"
+services:
+  #PHP Service
+  todo-authorization:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    image: digitalocean.com/php
+    container_name: todo-authorization
+    restart: unless-stopped
+    tty: true
+    environment:
+      APP_KEY: base64:20KjR77mhPY0DjEziiRYR+U2FrWvZSHfX6MVcHaMhPg=
+      SERVICE_NAME: todo-authorization
+      SERVICE_TAGS: dev
+      DB_HOST: todo-db
+      DB_DATABASE: todo-authorization-db
+      DB_PASSWORD: passwd
+      DB_PORT: "3306"
+      DB_USERNAME: root
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_LOG_LEVEL: debug
+    ports:
+      - 6023:80
+    working_dir: /var/www
+    volumes:
+      - ./localDockerfiles/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - todo-network
+    command: bash -c "
+      (composer install || true) &&
+      (php artisan migrate || true) &&
+      (php artisan config:cache || true) &&
+      (php artisan route:clear || true)  &&
+      (nginx -t && nginx) &&
+      php-fpm"
+
+
+#Docker Networks
+networks:
+  todo-network:
+    external: true
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local
+
