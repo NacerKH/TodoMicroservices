@@ -29,7 +29,7 @@ services:
       - 6021:80
     working_dir: /var/www
     volumes:
-      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./localDockerfiles/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - todo-network
     command: bash -c "
