@@ -3,8 +3,9 @@
 namespace App\ExternalServices\Authorization\Services;
 
 use App\ExternalServices\Contracts\Services\BaseApiService;
+use App\Http\Contracts\AuthorizationServiceInterface;
 
-abstract class BaseAuthorizationService extends BaseApiService
+abstract class BaseAuthorizationService extends BaseApiService implements AuthorizationServiceInterface
 {
     
     private $base_url;
