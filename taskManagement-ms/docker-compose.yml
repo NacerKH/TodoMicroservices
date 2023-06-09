@@ -52,6 +52,7 @@ services:
           SERVICE_TAGS: dev
           SERVICE_NAME: mysql
     volumes:
+    - ./:/var/www
     - dbdata:/var/www
 
     networks:
