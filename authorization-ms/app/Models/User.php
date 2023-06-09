@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function authentication_logs()
     {
-        return $this->hasMany(ActivityLog::class)->where('class_name', 'Authentication');
+        return $this->hasMany(ActivityLog::class)->where('action', 'login');
     }
     public function getLastLoginAttribute()
     {
