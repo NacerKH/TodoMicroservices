@@ -2,13 +2,15 @@
 
 namespace App\ExternalServices\Authorization\Services;
 
+use App\ExternalServices\Authorization\Contracts\AuthorizationServiceInterface;
 use App\ExternalServices\Contracts\Services\BaseApiService;
-use App\Http\Contracts\AuthorizationServiceInterface;
+
 
 abstract class BaseAuthorizationService extends BaseApiService implements AuthorizationServiceInterface
 {
     
     private $base_url;
+    public $secret;
 
     /**
      * BaseAuthorizationService constructor.
@@ -16,6 +18,7 @@ abstract class BaseAuthorizationService extends BaseApiService implements Author
     public function __construct()
     {
         $this->base_url = config('services.ms_authorization.url') . '/api';
+        $this->secret = config('services.authors.secret');
     }
 
     /**

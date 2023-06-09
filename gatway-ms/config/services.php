@@ -38,4 +38,7 @@ return [
     'ms_task_management' => [
         'url' => env('MS_TODO_URL', 'http://task-managment-ms_url')
     ],
+    "authors"=>[
+        "secret"=>env("AUTHORS_SECRET","secret")
+    ]
 ];

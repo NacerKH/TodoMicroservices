@@ -9,6 +9,7 @@ trait ServiceCommunicationTrait
 {
     use BaseApiResponse;
 
+    
     /**
      * Forward the request to an external service.
      *
@@ -24,8 +25,12 @@ trait ServiceCommunicationTrait
 
         if (request()->headers->has('Authorization')) {
             $headers['Authorization'] = request()->header('Authorization');
-        }
+        } 
 
+        if (isset($this->secret)) {
+            $headers['SecretKey'] = $this->secret;
+        }
+     
         $response = HttpClient::send($method, $url, [
             'form_params' => $params,
             'headers' => $headers,
