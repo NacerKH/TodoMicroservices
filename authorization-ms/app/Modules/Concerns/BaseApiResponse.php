@@ -4,7 +4,7 @@
  * User: Islem Khemissi
  */
 
-namespace App\Modules;
+namespace App\Modules\Concerns;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;

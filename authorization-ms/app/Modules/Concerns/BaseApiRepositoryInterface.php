@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Modules;
+namespace App\Modules\Concerns;
 
 
 interface BaseApiRepositoryInterface

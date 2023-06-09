@@ -3,7 +3,7 @@
 namespace App\Modules\Authentication\Repositories;
 use App\Models\User;
 use App\Modules\Authentication\Contracts\AuthenticationRepositoryInterface;
-use App\Modules\BaseApiRepository;
+use App\Modules\Concerns\BaseApiRepository;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http as HttpClient;

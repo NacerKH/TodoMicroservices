@@ -5,8 +5,7 @@ namespace App\Modules\ActivityLog\Repositories;
 
 use App\Modules\ActivityLog\Models\ActivityLog;
 use App\Modules\ActivityLog\Resources\ActivityLogResource;
-use App\Modules\BaseApiRepository;
-
+use App\Modules\Concerns\BaseApiRepository;
 
 class ActivityLogRepository extends BaseApiRepository
 {

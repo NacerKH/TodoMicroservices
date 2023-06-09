@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules;
+namespace App\Modules\Concerns;
 
 use App\Models\User;
 use App\Modules\ActivityLog\Models\ActivityLog;
