@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Modules\ActivityLog\Models\ActivityLog;
+use App\Modules\Authentication\Models\AuthenticationLog;
+use App\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -42,4 +44,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    protected  $appends =['role','last_login'];
+
+    public function authentication_logs()
+    {
+        return $this->hasMany(ActivityLog::class)->where('class_name', 'Authentication');
+    }
+    public function getLastLoginAttribute()
+    {
+        return $this->authentication_logs()->latest()->first() ? 
+               $this->authentication_logs()->latest()->first()->created_at->toDateTimeString(): now();
+    }
+
+
 }
