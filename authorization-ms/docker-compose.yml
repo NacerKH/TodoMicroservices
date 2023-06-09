@@ -20,18 +20,25 @@ services:
       DB_USERNAME: root
       APP_ENV: local
       APP_URL: todo-webserver-authorization
+      LOGIN_URL: todo-webserver-authorization
       APP_DEBUG: "true"
       APP_LOG_LEVEL: debug
+      AUTHORIZATION_URL: /oauth/authorize
+      TOKEN_URL: /oauth/token
+      REFRESH_URL: /oauth/token/refresh
+      TOKEN_EXPIRY_HOURS: 3
+      ACCEPTED_SECRETS : "[gatwaySecret]"
     ports:
       - 6023:80
     working_dir: /var/www
     volumes:
+      - ./:/var/www
       - ./dockerfiles/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - todo-network
     command: bash -c "
       (composer install || true) &&
-      (php artisan migrate || true) &&
+      (php artisan migrate --seed || true) &&
       (php artisan config:cache || true) &&
       (php artisan route:clear || true)  &&
       (nginx -t && nginx) &&

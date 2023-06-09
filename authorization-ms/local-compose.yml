@@ -21,16 +21,23 @@ services:
       APP_ENV: local
       APP_DEBUG: "true"
       APP_LOG_LEVEL: debug
+      LOGIN_URL: todo-authorization
+      AUTHORIZATION_URL: /oauth/authorize
+      TOKEN_URL: /oauth/token
+      REFRESH_URL: /oauth/token/refresh
+      TOKEN_EXPIRY_HOURS: 3
+      ACCEPTED_SECRETS : "gatwaySecret,gatwaySecret1"
     ports:
       - 6023:80
     working_dir: /var/www
     volumes:
+      - ./:/var/www
       - ./localDockerfiles/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - todo-network
     command: bash -c "
       (composer install || true) &&
-      (php artisan migrate || true) &&
+      (php artisan migrate:fresh --seed || true) &&
       (php artisan config:cache || true) &&
       (php artisan route:clear || true)  &&
       (nginx -t && nginx) &&
