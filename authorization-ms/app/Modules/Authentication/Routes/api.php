@@ -1,9 +1,7 @@
 <?php
 
 use App\Modules\Authentication\Controllers\AuthenticationController;
-use App\Modules\Authentication\Controllers\PasswordsController;
-use App\Modules\Authentication\Controllers\TwoFactorAuthController;
-use App\Modules\Authentication\Controllers\VerificationsController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('check-token', [AuthenticationController::class, 'checkToken'])

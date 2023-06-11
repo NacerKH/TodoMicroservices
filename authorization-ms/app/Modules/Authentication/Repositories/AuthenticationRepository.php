@@ -125,7 +125,7 @@ class AuthenticationRepository  extends BaseApiRepository   implements Authentic
     public function checkToken()
     {
         return auth()->id() 
-            ? $this->success(__('auth.valid_auth_token'), auth()->user()->last_login)
+            ? $this->success(__('auth.valid_auth_token'), auth()->user())
             : abort(401);
     }
 
