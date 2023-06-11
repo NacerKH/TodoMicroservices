@@ -25,7 +25,7 @@ services:
       APP_DEBUG: "true"
       APP_LOG_LEVEL: debug
       MS_AUTHORIZATION_URL: todo-authorization
-      MS_TODO_URL: task-managment-ms
+      MS_TODO_URL: task-management-ms
     ports:
       - 6020:80
     working_dir: /var/www
