@@ -37,7 +37,7 @@ services:
       - todo-network
     command: bash -c "
       (composer install || true) &&
-      (php artisan migrate:fresh --seed || true) &&
+      (php artisan migrate --seed || true) &&
       (php artisan config:cache || true) &&
       (php artisan route:clear || true)  &&
       (nginx -t && nginx) &&
