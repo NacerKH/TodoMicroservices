@@ -23,7 +23,22 @@ class AuthenticationRepository  extends BaseApiRepository   implements Authentic
     const APP_LOGIN_URL = 'app.login_url';
     const REQUIRED_STRING = 'required|string';
 
-   
+
+    protected function checkTestingEnvironment()
+    {
+
+        if (app()->environment('testing')) {
+
+            HttpClient::fake([
+                config(self::APP_LOGIN_URL) . self::PASSPORT_AUTH_ROUTE => HttpClient::response([
+                    'token_type' => 'token_type',
+                    'expires_in' => 'expires_in',
+                    'access_token' => 'access_token',
+                    'refresh_token' => 'refresh_token',
+                ])
+            ]);
+        }
+    }
 
 
     /**
@@ -35,6 +50,7 @@ class AuthenticationRepository  extends BaseApiRepository   implements Authentic
     public function login($request_data)
     {
         $client = PassportClient::firstOrFail();
+        $this->checkTestingEnvironment();
         $user = User::where('email', $request_data['email'])->first();
 
         if (!isset($user['email'])) return $this->error(__('auth.login_failed'), 401);
