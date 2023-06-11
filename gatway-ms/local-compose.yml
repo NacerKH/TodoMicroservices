@@ -22,7 +22,7 @@ services:
       DB_USERNAME: root
       APP_ENV: local
       MS_AUTHORIZATION_URL: todo-authorization
-      MS_TODO_URL: task-managment-ms
+      MS_TODO_URL: task-management-ms
       APP_DEBUG: "true"
       APP_LOG_LEVEL: debug
       ACCEPTED_SECRETS: "secret1,secret2,secret3" 
