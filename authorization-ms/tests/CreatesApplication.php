@@ -15,6 +15,11 @@ trait CreatesApplication
         $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
+        // Set the testing database connection
+        $app['config']->set('database.default', 'sqlite');
+        $app->detectEnvironment(function () {
+            return 'testing';
+        });
 
         return $app;
     }
