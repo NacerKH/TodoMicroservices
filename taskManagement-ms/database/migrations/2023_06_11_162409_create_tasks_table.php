@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->integer('priority');
+            $table->integer('priority')->default(0);
             $table->dateTime('date_of_completion');
-            $table->foreignId('list_task_id')->constrained('list_tasks');
+            $table->foreignId('list_task_id')->constrained('list_tasks')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }
