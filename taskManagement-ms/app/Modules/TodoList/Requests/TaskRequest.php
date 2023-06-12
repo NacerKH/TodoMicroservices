@@ -11,7 +11,10 @@ class TaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $this->merge([
+            'user_id' => $this->header('X-User-Id'),
+        ]);
+        return true;
     }
 
     /**
@@ -22,7 +25,12 @@ class TaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'=>'required|string',
+            'content'=>'required|string',
+            'priority' => 'required|integer|between:1,3',
+            'date_of_completion' => 'required|date|after_or_equal:now',
+            'list_task_id'=> 'required|integer|exists:list_tasks,id',
+            'user_id'=> 'required|integer'
         ];
     }
 }
