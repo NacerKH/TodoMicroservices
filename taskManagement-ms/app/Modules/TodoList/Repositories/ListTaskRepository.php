@@ -16,7 +16,7 @@ class ListTaskRepository  extends BaseApiRepository   implements ListTaskReposit
     public function index()
     {    
 
-      return $this->success("Lists of   Tasks  Retrieved succesffully ", ListTaskResource::collection(ListTask::get()) );
+      return $this->success("Lists of   Tasks  Retrieved succesffully ", ListTaskResource::collection(ListTask::with('tasks')->get()) );
   
     }
 
@@ -31,7 +31,7 @@ class ListTaskRepository  extends BaseApiRepository   implements ListTaskReposit
         if (!$listTask) {
             return $this->error("List Task Not Found", 404);
         }
-        return $this->success("List Task Retrieved Successfully",  ListTaskResource::make($listTask));
+        return $this->success("List Task Retrieved Successfully",  ListTaskResource::make($listTask->load(['tasks'])));
     }
 
 
