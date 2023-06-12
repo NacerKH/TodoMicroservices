@@ -5,12 +5,12 @@ namespace App\ExternalServices\TaskManagement\Services;
 
 use App\Traits\ServiceCommunicationTrait;
 
-class TaskManagementService extends BaseTaskManagementService
+class ListTaskManagementService extends BaseTaskManagementService
 {
     use ServiceCommunicationTrait;
 
     function baseServiceUrl()
     {
-        return 'TaskManagement/task';
+        return 'TaskManagement/list-task';
     }
 }
