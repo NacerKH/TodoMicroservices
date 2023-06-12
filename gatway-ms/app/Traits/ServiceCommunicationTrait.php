@@ -21,12 +21,14 @@ trait ServiceCommunicationTrait
      */
     public function forwardRequest(string $method, string $url, array $params = [], array $headers = [])
     {
-  
+    
 
         if (request()->headers->has('Authorization')) {
             $headers['Authorization'] = request()->header('Authorization');
+        }
+        if (request()->headers->has('X-User-Id')) {
+            $headers['X-User-Id'] = request()->header('X-User-Id');
         } 
-
         if (isset($this->secret)) {
             $headers['SecretKey'] = $this->secret;
         }
