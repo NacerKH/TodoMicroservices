@@ -25,7 +25,7 @@ class ListTaskController extends Controller
      */
     public function store(ListTaskRequest $request)
     {
-        return $this->listTaskRepository->create($request->only($request->validated()));
+        return $this->listTaskRepository->create($request->validated());
     }
 
     /**
