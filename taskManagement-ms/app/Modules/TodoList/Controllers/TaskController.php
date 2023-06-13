@@ -54,4 +54,25 @@ class TaskController extends Controller
         $this->taskRepository->delete($task->id);
 
     }
+
+
+    /**
+     * Find the tasks related with user.
+     */
+    public function findUserTasks()
+    {  
+    
+       return $this->taskRepository->findTaskByUser(request()->get('user_assigned_id'));
+    }
+
+
+    /**
+     * assign task the specified User id.
+     */
+    public function assignTask(Task $task)
+    {
+        $user_assigned_id = request()->get('user_assigned_id');
+      
+        $this->taskRepository->assigneTask($task, $user_assigned_id);
+    }
 }
