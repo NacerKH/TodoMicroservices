@@ -112,4 +112,40 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
 
         return $this->success("User assigned Task Successfully", TaskResource::make($task));
     }
+
+    /**
+     * Change  Priority Of task .
+     *
+     * @param  Task  $task
+     * @param  int  $priority
+     * @return JsonResponse
+     */
+    public function ChangePriority($task, $priority): JsonResponse
+    {
+        if (!$task) {
+            return $this->error("Task Not Found", 404);
+        }
+
+        $task->update($priority);
+
+        return $this->success("User change  Task  Priority Successfully", TaskResource::make($task));
+    }
+
+    /**
+     * Change  status Of task .
+     *
+     * @param  Task  $task
+     * @param  int  $status
+     * @return JsonResponse
+     */
+    public function ChangeStatus($task, $status): JsonResponse
+    {  
+        if (!$task) {
+            return $this->error("Task Not Found", 404);
+        }
+
+        $task->update($status);
+
+        return $this->success("User change status Task Successfully", TaskResource::make($task));
+    }
 }
