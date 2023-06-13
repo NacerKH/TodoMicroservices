@@ -2,7 +2,9 @@
 
 namespace App\Modules\TodoList\Models;
 
+use App\Modules\TodoList\Enum\TaskPriorityEnum;
 use Database\Factories\TaskFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -56,5 +58,15 @@ class Task extends Model
     {
 
         return self::with('listTask')->where('user_id',$id)->get();
+    }
+    
+    /**
+     * Get the priority  name.
+     */
+    protected function priority(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) =>TaskPriorityEnum::getPriorityLevel($value),
+        );
     }
 }
