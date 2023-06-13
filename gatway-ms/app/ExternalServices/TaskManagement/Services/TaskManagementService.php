@@ -27,6 +27,15 @@ class TaskManagementService extends BaseTaskManagementService implements TaskMan
         return $this->forwardRequest(Request::METHOD_POST, $this->getFullServiceUrl(). "/assign/$task_id", $request_data);
 
     }
+    public function UserChangeStatusTask($task_id, $request_data)
+    {
 
+        return $this->forwardRequest(Request::METHOD_POST, $this->getFullServiceUrl() . "/User/change-status/$task_id", $request_data);
+    }
 
+    public function UserChangePriorityTask($task_id, $request_data)
+    {
+
+        return $this->forwardRequest(Request::METHOD_POST, $this->getFullServiceUrl() . "/User/change-priority/$task_id", $request_data);
+    }
 }
