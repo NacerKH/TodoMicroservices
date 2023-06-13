@@ -3,9 +3,9 @@
 namespace App\ExternalServices\TaskManagement\Services;
 
 use App\ExternalServices\Contracts\Services\BaseApiService;
-use App\ExternalServices\TaskManagement\Contracts\TaskManagementServiceInterface;
 
-abstract class BaseTaskManagementService extends BaseApiService implements TaskManagementServiceInterface
+
+abstract class BaseTaskManagementService extends BaseApiService 
 {
     
     private $base_url;

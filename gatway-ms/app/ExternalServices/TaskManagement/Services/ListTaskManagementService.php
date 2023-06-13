@@ -2,10 +2,10 @@
 
 namespace App\ExternalServices\TaskManagement\Services;
 
-
+use App\ExternalServices\TaskManagement\Contracts\ListTaskManagementServiceInterface;
 use App\Traits\ServiceCommunicationTrait;
 
-class ListTaskManagementService extends BaseTaskManagementService
+class ListTaskManagementService extends BaseTaskManagementService implements ListTaskManagementServiceInterface
 {
     use ServiceCommunicationTrait;
 
