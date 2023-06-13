@@ -51,4 +51,10 @@ class Task extends Model
 
         return $this->listTask()->first()?->name;
     }
+
+    static function userTasks($id)
+    {
+
+        return self::with('listTask')->where('user_id',$id)->get();
+    }
 }
