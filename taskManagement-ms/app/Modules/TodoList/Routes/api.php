@@ -9,11 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('TaskManagement')->group(function () {
 
-Route::apiResource('/list-task', ListTaskController::class)->parameters(['' => 'listTask']);
+Route::apiResource('/list-task', ListTaskController::class)->parameters(['listTask' => 'id']);
+Route::apiResource('task', TaskController::class)->parameters(['task' => 'id']);
 
-Route::prefix('task')->group(function () {
-
-Route::apiResource('/', TaskController::class)->parameters(['' => 'task']);
+Route::prefix('/task')->group(function () {
 
 Route::post('/assign/{task:id}',[TaskController::class, 'assignTask']);
 
