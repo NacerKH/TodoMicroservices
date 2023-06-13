@@ -56,5 +56,12 @@ class TaskManagementController extends Controller
     {   
         return $this->taskManagementService->UserAssignTask($task_id, $request->all());
     }
-
+    public function changeStatus($task_id, Request $request)
+    {    
+        return $this->taskManagementService->UserChangeStatusTask($task_id, $request->all());
+    }
+    public function changePriority($task_id, Request $request)
+    {
+        return $this->taskManagementService->UserChangePriorityTask($task_id, $request->all());
+    }
 }
