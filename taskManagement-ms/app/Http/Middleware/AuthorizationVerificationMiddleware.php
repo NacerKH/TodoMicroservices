@@ -21,6 +21,10 @@ class AuthorizationVerificationMiddleware
             // Handle the case where X-User-Id header is missing
             return response()->json(['error' => 'Unauthorized ! TaskManagemt-ms'], Response::HTTP_UNAUTHORIZED);
         }
+        
+        $request->merge([
+            'user_id' =>$userId,
+        ]);
         return $next($request);
     }
 }
