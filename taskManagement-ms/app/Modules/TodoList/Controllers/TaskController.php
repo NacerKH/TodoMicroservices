@@ -5,6 +5,8 @@ namespace App\Modules\TodoList\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\TodoList\Models\Task;
 use App\Modules\TodoList\Repositories\TaskRepository;
+use App\Modules\TodoList\Requests\changePriorityTaskRequest;
+use App\Modules\TodoList\Requests\changeStatusTaskRequest;
 use App\Modules\TodoList\Requests\TaskRequest;
 
 class TaskController extends Controller
@@ -75,4 +77,26 @@ class TaskController extends Controller
       
      return   $this->taskRepository->assigneTask($task, $user_assigned_id);
     }
+
+    /**
+     * assign task the specified User id.
+     */
+    public function changeStatus(changeStatusTaskRequest $request, Task $task)
+    {
+ 
+
+        return   $this->taskRepository->ChangeStatus($task, $request->validated());
+    }
+    
+    /**
+     * change Priority task .
+     */
+    public function changePriority(Task $task,changePriorityTaskRequest $request)
+    {
+      
+
+        return   $this->taskRepository->ChangePriority($task, $request->validated());
+    }
+
+
 }

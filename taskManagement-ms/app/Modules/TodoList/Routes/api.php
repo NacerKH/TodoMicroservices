@@ -18,6 +18,11 @@ Route::post('/assign/{task:id}',[TaskController::class, 'assignTask']);
 
 Route::get('/User/Tasks', [TaskController::class, 'findUserTasks']);
 
+Route::post('/User/change-status/{task:id}', [TaskController::class, 'changeStatus']);
+
+Route::post('/User/change-priority/{task:id}', [TaskController::class, 'changePriority']);
+
+
 });
 
 });
