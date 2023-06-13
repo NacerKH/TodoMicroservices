@@ -2,15 +2,31 @@
 
 namespace App\ExternalServices\TaskManagement\Services;
 
-
+use App\ExternalServices\TaskManagement\Contracts\TaskManagementServiceInterface;
 use App\Traits\ServiceCommunicationTrait;
+use Illuminate\Http\Request;
 
-class TaskManagementService extends BaseTaskManagementService
+class TaskManagementService extends BaseTaskManagementService implements TaskManagementServiceInterface
 {
     use ServiceCommunicationTrait;
 
-    function baseServiceUrl()
+   public  function baseServiceUrl()
     {
         return 'TaskManagement/task';
     }
+
+   public function UserGetHisTask()
+   {
+        return $this->forwardRequest(Request::METHOD_GET, $this->getFullServiceUrl(). '/User/Tasks');
+  
+   }
+
+    public function UserAssignTask($task_id,$request_data)
+    {   
+       
+        return $this->forwardRequest(Request::METHOD_POST, $this->getFullServiceUrl(). "/assign/$task_id", $request_data);
+
+    }
+
+
 }
