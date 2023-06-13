@@ -27,7 +27,7 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        return $this->taskRepository->create($request->validated());
+        return $this->taskRepository->store($request->validated());
     }
 
     /**

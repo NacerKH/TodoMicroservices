@@ -20,7 +20,7 @@ class ListTaskRepository  extends BaseApiRepository   implements ListTaskReposit
   
     }
 
-    public function create(array $data)
+    public function store(array $data)
     {
         $listTask = ListTask::create($data);
         return $this->success("List Task Created Successfully",  ListTaskResource::make($listTask));

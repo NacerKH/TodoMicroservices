@@ -8,7 +8,7 @@ interface BaseApiRepositoryInterface
 {
     public function index();
 
-    public function create(array $form_data);
+    public function store(array $form_data);
 
     public function show($resource_id);
 

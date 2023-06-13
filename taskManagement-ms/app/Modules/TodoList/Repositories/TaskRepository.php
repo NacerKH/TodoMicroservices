@@ -26,7 +26,7 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
      * @param  array  $data
      * @return JsonResponse
      */
-    public function create(array $data): JsonResponse
+    public function store(array $data): JsonResponse
     {
         $task = Task::create($data);
         return $this->success("Task Created Successfully", TaskResource::make($task));
