@@ -46,4 +46,15 @@ class TaskManagementController extends Controller
     {
         return $this->taskManagementService->delete($resource_id);
     }
+
+    public function userTasks()
+    {
+        return $this->taskManagementService->UserGetHisTask();
+    }
+
+    public function assign($task_id,Request $request)
+    {   
+        return $this->taskManagementService->UserAssignTask($task_id, $request->all());
+    }
+
 }
