@@ -35,7 +35,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-       $this->taskRepository->show($task->id);
+        return  $this->taskRepository->show($task->id);
     }
 
     /**
@@ -43,7 +43,7 @@ class TaskController extends Controller
      */
     public function update(TaskRequest $request, Task $task)
     {
-       $this->taskRepository->update($task->id,$request->validated());
+        return  $this->taskRepository->update($task->id,$request->validated());
     }
 
     /**
@@ -51,7 +51,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $this->taskRepository->delete($task->id);
+       return $this->taskRepository->delete($task->id);
 
     }
 
@@ -62,7 +62,7 @@ class TaskController extends Controller
     public function findUserTasks()
     {  
     
-       return $this->taskRepository->findTaskByUser(request()->get('user_assigned_id'));
+       return $this->taskRepository->findTaskByUser(request()->user_id);
     }
 
 
@@ -73,6 +73,6 @@ class TaskController extends Controller
     {
         $user_assigned_id = request()->get('user_assigned_id');
       
-        $this->taskRepository->assigneTask($task, $user_assigned_id);
+     return   $this->taskRepository->assigneTask($task, $user_assigned_id);
     }
 }
