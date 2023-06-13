@@ -2,7 +2,9 @@
 
 namespace App\Modules\TodoList\Contracts;
 
-interface ListTaskRepositoryInterface
+use App\Modules\Concerns\BaseApiRepositoryInterface;
+
+interface ListTaskRepositoryInterface extends BaseApiRepositoryInterface
 {
 
 
