@@ -28,12 +28,15 @@ class ReminderTaskEventsCommand extends Command
      */
     public function handle()
     {
-        $task = Task::where('date_of_completion', '<=', now()->addDay())
+        $tasks = Task::where('date_of_completion', '<=', now()->addDay())
             ->where('date_of_completion', '>=', now())
             ->get();
-    
+    print_r($tasks);
  
-          Redis::publish('reminder-task', json_encode($task));
+          Redis::publish('reminder-task', json_encode(
+            ['event'=> 'reminder-task',
+                    'data' =>$tasks]
+                ));
         
     }
 }

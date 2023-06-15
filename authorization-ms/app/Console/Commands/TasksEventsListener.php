@@ -35,49 +35,64 @@ class TasksEventsListener extends Command
 
     
 
-
-        Redis::subscribe('reminder-task', function ($message) {
-
-            $data = json_decode($message, true);
-            print_r($data);
-            foreach ($data as $task) {
-                $user_id = $task['user_id'];
-                $user = User::findOrfail($user_id);
-
-                echo "Received message: " .  print_r($user) . "\n";
-                $user->notify(new ReminderTaskNotification($task));
-                echo "Received message: " . $task['user_id'] . "\n";
-            }
-        });
-
-        Redis::subscribe('change-status-task', function ($message) {
+        Redis::subscribe(['reminder-task', 'change-status-task', 'task-was-assigned'], function ($message) {
 
             $data = json_decode($message, true);
             print_r($data);
-
-            foreach ($data as $task) {
-                $user_id = $task['user_id'];
-                $user = User::findOrfail($user_id);
-
-                // echo "Received message: " .  print_r($user) . "\n";
-                $user->notify(new AssignedTaskNotification($task));
-                echo "Received message: " . $task['user_id'] . "\n";
+      
+   
+            switch ($data['event']) {
+                case 'reminder-task':
+                    $this->reminderTask($data['data'] );
+                    break;
+                case 'change-status-task':
+                    $this->changeStatusTask($data['data']);
+                    break;
+                case 'task-was-assigned':
+                    $this->taskWasAssigned($data['data']);
+                    break;
             }
+          
         });
 
-        Redis::subscribe('task-was-assigned', function ($message) {
-
-            $data = json_decode($message, true);
-
-
-            foreach ($data as $task) {
-                $user_id = $task['user_id'];
-                $user = User::findOrfail($user_id);
-
-                // echo "Received message: " .  print_r($user) . "\n";
-                $user->notify(new ChangeStatusTaskNotification($task));
-                echo "Received message: " . $task['user_id'] . "\n";
-            }
-        });
     }
+
+
+    private function reminderTask($tasks)
+    {
+        echo "reminderTask message: "  .PHP_EOL;
+        foreach ($tasks as $task) {
+        $user_id = $task['user_id'];
+        $user = User::findOrfail($user_id);
+        echo "Received message: " .  print_r($user) . "\n";
+        $user->notify(new ReminderTaskNotification($task));
+        }
+    }
+
+    private function changeStatusTask($tasks)
+    {    echo "changeStatusTask message: "  . PHP_EOL;
+        foreach ($tasks as $task) {
+            $user_id = $task['user_id'];
+            $user = User::findOrfail($user_id);
+            echo "Received message: " .  print_r($user) . "\n";
+           $user->notify(new ChangeStatusTaskNotification($task));
+        }
+
+    
+        
+    }
+
+    private function taskWasAssigned($tasks)
+    {
+        echo "taskWasAssigned message: "  . PHP_EOL;
+        foreach ($tasks as $task) {
+            $user_id = $task['user_id'];
+            $user = User::findOrfail($user_id);
+            echo "Received message: " .  print_r($user) . "\n";
+          $user->notify(new AssignedTaskNotification($task));
+
+        }
+    } 
+
+   
 }

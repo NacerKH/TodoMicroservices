@@ -24,6 +24,12 @@ class ChangeStatusTaskListener
      */
     public function handle(ChangeStatusTaskEvent $event): void
     {
-        Redis::publish('change-status-task', json_encode($event));
+        Redis::publish('change-status-task',
+        json_encode(
+            [
+                'event' => 'change-status-task',
+                'data' => $event
+            ]
+        ));
     }
 }

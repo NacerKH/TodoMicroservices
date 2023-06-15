@@ -22,6 +22,11 @@ class AssignedTaskListener
      */
     public function handle(AssignedTaskEvent $event): void
     {
-        Redis::publish('task-was-assigned', json_encode($event));
+        Redis::publish('task-was-assigned', json_encode(
+            [
+                'event' => 'task-was-assigned',
+                'data' => $event
+            ]
+        ));
     }
 }
