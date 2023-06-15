@@ -112,7 +112,7 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
 
         $task->update(['user_id' => $user_id]);
 
-          dispatch( new AssignedTaskEvent($task) );
+          event( new AssignedTaskEvent($task) );
 
         return $this->success("User assigned Task Successfully", TaskResource::make($task));
     }
@@ -149,7 +149,7 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
         }
 
         $task->update($status);
-        dispatch(new ChangeStatusTaskEvent($task));
+        event(new ChangeStatusTaskEvent($task));
         return $this->success("User change status Task Successfully", TaskResource::make($task));
     }
 }
