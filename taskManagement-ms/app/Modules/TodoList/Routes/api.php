@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('TaskManagement')->group(function () {
 
-Route::apiResource('/list-task', ListTaskController::class)->parameters(['listTask' => 'id']);
-Route::apiResource('task', TaskController::class)->parameters(['task' => 'id']);
+Route::apiResource('/list-task', ListTaskController::class)->parameters(['id' => 'listTask']);
+Route::apiResource('task', TaskController::class)->parameters(['id' => 'task']);
 
 Route::prefix('/task')->group(function () {
 
