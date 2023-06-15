@@ -29,8 +29,14 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
      * @return JsonResponse
      */
     public function store(array $data): JsonResponse
-    {
+    {   
+        $this->handleFileAttachment($data);
+    
         $task = Task::create($data);
+        if(isset($data['attachment'])){
+            $task->attachments()->create(['filename' => $data['attachment_filename'], 'path' => $data['attachment']]);
+
+        }
         return $this->success("Task Created Successfully", TaskResource::make($task));
     }
 
@@ -46,6 +52,7 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
         if (!$task) {
             return $this->error("Task Not Found", 404);
         }
+        $this->addAttachmentInfo($task);
         return $this->success("Task Retrieved Successfully", TaskResource::make($task->load('listTask')));
     }
 
@@ -57,12 +64,17 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
      * @return JsonResponse
      */
     public function update($resource_id, array $data): JsonResponse
-    {
+    {   
+        
         $task = Task::find($resource_id);
         if (!$task) {
             return $this->error("Task Not Found", 404);
         }
+        $this->handleFileAttachment($data);
         $task->update($data);
+        if (isset($data['attachment'])) {
+            $task->attachments->create(['filename' => $data['attachment_filename'], 'path' => $data['attachment']]);
+        }
         return $this->success("Task Updated Successfully", TaskResource::make($task));
     }
 
@@ -78,6 +90,8 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
         if (!$task) {
             return $this->error("Task Not Found", 404);
         }
+      
+        $task->attachments->pluck('path')->each(fn ($path) => $this->deleteFileAttachment($path));
         $task->delete();
         return $this->success("Task Deleted Successfully");
     }

@@ -23,14 +23,15 @@ class TaskRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
-    {
+    { 
         return [
             'title'=>'required|string',
             'content'=>'required|string',
             'priority' => 'required|integer|between:1,3',
             'date_of_completion' => 'required|date|after_or_equal:now',
             'list_task_id'=> 'required|integer|exists:list_tasks,id',
-            'user_id'=> 'required|integer'
+            'user_id'=> 'required|integer',
+            'attachment'=>'nullable|file|mimes:jpeg,png,jpg,gif,svg,pdf,docx,doc,xls,xlsx|max:2048'
         ];
     }
 }
