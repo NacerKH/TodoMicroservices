@@ -2,6 +2,7 @@
 
 namespace App\Modules\TodoList\Models;
 
+use App\Models\Attachment;
 use App\Modules\TodoList\Enum\TaskPriorityEnum;
 use Database\Factories\TaskFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -26,6 +27,8 @@ class Task extends Model
         'list_task_id',
         'user_id'
     ];
+
+    protected $with = ['attachments'];
     /**
      * The attributes that should be cast.
      *
@@ -36,7 +39,7 @@ class Task extends Model
         'updated_at' => 'datetime:Y-m-d H:00',
     ];
    
-    protected $appends =['status'];
+    protected $appends =['status' ];
     protected static function newFactory()
     {
         return TaskFactory::new();
@@ -68,5 +71,10 @@ class Task extends Model
         return Attribute::make(
             get: fn (string $value) =>TaskPriorityEnum::getPriorityLevel($value),
         );
+    }
+
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
     }
 }
