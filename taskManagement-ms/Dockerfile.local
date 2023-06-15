@@ -19,14 +19,16 @@ RUN apt-get update && \
     apt-get install -y libicu-dev && \
     docker-php-ext-install intl && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer && \
-    docker-php-ext-install bcmath
-
+    docker-php-ext-install bcmath && \
+    apt-get install -y supervisor 
+   
 ADD php.ini /usr/local/etc/php
-
+ADD laravel-worker.conf /etc/supervisor/conf.d
 
 COPY . /var/www
 ADD ./localDockerfiles/nginx/sites-available/default /etc/nginx/sites-available
 ADD ./localDockerfiles/nginx/index/index.php /var/www/public
+ADD ./localDockerfiles/redis/redis.conf /usr/local/etc/redis/redis.conf
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 
 
@@ -37,5 +39,5 @@ RUN chown -R www-data:www-data \
   /var/www/storage \
   /var/www/storage/* \
   /var/www/bootstrap/cache \
-
+  && chmod +x /var/www/start-supervisor.sh
 

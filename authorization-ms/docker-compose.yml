@@ -28,6 +28,13 @@ services:
       REFRESH_URL: /oauth/token/refresh
       TOKEN_EXPIRY_HOURS: 3
       ACCEPTED_SECRETS : "[gatwaySecret]"
+      MAIL_MAILER : smtp
+      MAIL_HOST : sandbox.smtp.mailtrap.io
+      MAIL_PORT : 2525
+      MAIL_USERNAME: 1b98c7e3c5f851
+      MAIL_PASSWORD: c234e6db71df88
+      MAIL_ENCRYPTION : 
+      
     ports:
       - 6023:80
     working_dir: /var/www

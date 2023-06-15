@@ -22,6 +22,12 @@ services:
       APP_ENV: local
       APP_DEBUG: "true"
       APP_LOG_LEVEL: debug
+      QUEUE_DRIVER: redis
+      QUEUE_CONNECTION: redis
+      REDIS_CLIENT: predis
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      BROADCAST_DRIVER : redis
     ports:
       - 6022:80
     working_dir: /var/www
@@ -38,7 +44,15 @@ services:
       (nginx -t && nginx) &&
       php-fpm"
 
-
+  # Redis Service
+  redis:
+    image: redis:latest
+    container_name: task-management-redis
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    networks:
+      - todo-network
 
 #Docker Networks
 networks:
