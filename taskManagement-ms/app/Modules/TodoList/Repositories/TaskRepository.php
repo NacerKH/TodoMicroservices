@@ -4,6 +4,8 @@ namespace App\Modules\TodoList\Repositories;
 
 use App\Modules\Concerns\BaseApiRepository;
 use App\Modules\TodoList\Contracts\TaskRepositoryInterface;
+use App\Modules\TodoList\Events\AssignedTaskEvent;
+use App\Modules\TodoList\Events\ChangeStatusTaskEvent;
 use App\Modules\TodoList\Models\Task;
 use App\Modules\TodoList\Resources\TaskResource;
 use Illuminate\Http\JsonResponse;
@@ -110,6 +112,8 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
 
         $task->update(['user_id' => $user_id]);
 
+          dispatch( new AssignedTaskEvent($task) );
+
         return $this->success("User assigned Task Successfully", TaskResource::make($task));
     }
 
@@ -145,7 +149,7 @@ class TaskRepository extends BaseApiRepository implements TaskRepositoryInterfac
         }
 
         $task->update($status);
-
+        dispatch(new ChangeStatusTaskEvent($task));
         return $this->success("User change status Task Successfully", TaskResource::make($task));
     }
 }
