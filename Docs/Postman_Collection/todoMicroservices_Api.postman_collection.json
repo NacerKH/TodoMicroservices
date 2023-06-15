@@ -1,0 +1,355 @@
+{
+	"info": {
+		"_postman_id": "8c7225fd-9010-4727-b33f-5713fc9fa1d2",
+		"name": "todoMicroservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25619298"
+	},
+	"item": [
+		{
+			"name": "Gatway-ms",
+			"item": [
+				{
+					"name": "taskManagment",
+					"item": [
+						{
+							"name": "listtask",
+							"item": [
+								{
+									"name": "CrudListTask",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "task",
+							"item": [
+								{
+									"name": "CrudTask",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								},
+								{
+									"name": "assign task",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								},
+								{
+									"name": "getuserTask",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYTkwODVlZDU5MmEzNjhiOTQzOTc2MmRkOWMyMDUwYzZlYzU4ZmUxMTk5YjI3NWQ0ZWM3YjY3Yjk1ZWEyZmQ5ZTQyM2U5YmMwMTI2OWNkZTUiLCJpYXQiOjE2ODY2MTIzMjQuOTU3MzUxLCJuYmYiOjE2ODY2MTIzMjQuOTU3MzU0LCJleHAiOjE3MTgyMzQ3MjQuOTQ1MjAzLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.JpL5Ztug05rJdp7MT1-mtZu-5CYKPzfcfiKq6KEwNIE0KJkA6O3_VgjFQPQW4oMN9eE6zXbmTbucy4SybjaTdEpi8zKq2lR9vLQBAwsdjnyyGGRsyRm-wuoMqAjlMqcxx9LKUPw7bGjQhwcgkNRPflcNUz40Q7ue_W8G27l0mhp_M3M9zTVr9RsH_ZxmeET7ek0WE89KTR2uzuIQxSwbSkzqItsWJqEiv3SdDMOflW85yi83-PEa-6GG0R6rjcwz5p3MlKVoBuNKKzt6dFppsnHwLyg4Wvk_6mJOdbqFRE3VdK_tPDtF3lXOflMRgjysCkyFPJhIlQOOgp93SLDGj9fKEwriXx7betuYe2nlOF_eR1LVHlfk2XuJe5NHAnfGoQz9teVLfbxLzTPyAjUiMQmhFo8ha_7hBROxXNw0zjnVRmdyOVr9RLgSGuOqWaPxyYziXXBdoTTzHPB17bp1ks_vJmir0tKXO-dDNteZmdpXcrXemip1OLRQSEiPjew3XhFOWnshL5FlPzhLhVievrB4rchoOKxG9y1kVZw_Ll6cgDvbOg1g_vnuBxiQ2o80SFoHuu9GggdW-9dglJx7Vc9lW4nrFQGBW6OUr2Nn8wLUh3Jc2rOsCjaowINcPnIyuHa3U-X2BTUIiRw40tBZIZLiKgZncem-9SzMeEXc1dQ",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:6021/api/TaskManagement/task/User/Tasks",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "6021",
+											"path": [
+												"api",
+												"TaskManagement",
+												"task",
+												"User",
+												"Tasks"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "change status",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								},
+								{
+									"name": "change priority",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6021/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6021",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "authorization-ms",
+			"item": [
+				{
+					"name": "authentification",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGViODUxNWM5Mzg5ZTAwZDJhYzcwMGY2Yjg4MzkzOWNmNTg1NzAwZDkyYjYwY2JhZDhlMTc4N2JmOTdiYWVmNGY4NTkwYzg0YzdiMDhkOGMiLCJpYXQiOjE2ODYzMzE4MTEuMDgzMzIsIm5iZiI6MTY4NjMzMTgxMS4wODMzMjIsImV4cCI6MTcxNzk1NDIxMS4wNzE4NDQsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.KFH3gUsCFk21JOGHpX5ohsYAr2yfvpC5LuywFHBIEtR6JIIz_IuY84vK2FYv1VfPa1ep9HUFfigQcf93yQcPW8pL_wZOLVEG8lK6T--ce6BXko_kK0klbkLgYUQW0o-M568kGghjWsl6FEK-uGAN6azaVnT62ZDpWj0mMjha2KWfW7YMgXSCWZQTN4puLSTs3-0FiLYRiKxd775xf0UzKqgFj3dwID9TaAywpmMqMN9iZ9lGBU70_tRp3C3AFgI1nAnXlosDUkY3i9TV8Y7eSgChSkACtDJgIembCeRoBX0qJWMscpmXDPS1GDHaX1dw1G6K9OCXQD47BqRB1zsnEDnXoLLL1TxoId0sbrrJHdkunI229C-GeRdu4_gluOEqMyVwRkjkqysWJIpVSPx1LwhyGL-CI_qkqOpbbWLAhTA2yyIC6rl-i7grYyXRgGZaIncEVR-DudK9DBUVStjqEkmYY4-MDcVTfD9ebOrLUeYLpQr3F2z9vUOQ6VxrbANTD6BN7gCMeTP6ilaiRwiesk8lMut9drPs-Oj7oN_o69rG0JGPl03WO5-buFtyerY4NvpxpfTvOPN3mvQyZp_CL4emUuRmqGnmOz3z1--oGNUVtZlqxd81M7p96qoVWxQwCACh44Gxl9pkZ8cOe1UbD1MC8Z6bhG4KyN0Gtsm97xA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "SecretKey",
+										"value": "gatwaySecret",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"refresh_token\": \"def50200cfad71d141e11a51abd96135db328731c540ed6a561c8474eafe501df78927e8c38c213cfe46bc55fd6bf25664113676729a9e11a31a2b132afe171b76082d35139c0993f6a952aaaead7ba413b3dd16071c252b6bc44492126e561475dd973e3b8699bf4d447690de0b2c82873d2b76cc83ed6728bdb30ee4e5208b5a63bd23107e64b214127d83549332e2b10f171ea88376ef4ba4a56b0be04c2ae69adf6ad7ff6d4f5de8e29751bd278fc8bd78df2cd6e523e86461cf8fc78ae0a6f33976538fef80fb276c30a69c4167c6d04dcdedd0d48dab4b64f8da08c59e95685e9e68047c7b52fe044932f399e0fe009071cee795a1cda69f0e971e0f31df80a511e06bd9e6ae35c6ec309fa942465e38b1beed2a16dc3ae27c453893873e5dc8934eb57a77407570869fb9b95485b43731c59d9976a0df70d124977679eba8dcd896538df1cb347c565c2c0a297e8cd43cb406e9ba501676c8e88d2b2c50\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:6023/api/authorization/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "6023",
+									"path": [
+										"api",
+										"authorization",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "checkToken",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ActivityLog",
+					"item": [
+						{
+							"name": "get All Logs",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "taskmangement",
+			"item": [
+				{
+					"name": "list",
+					"item": [
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "task",
+					"item": [
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "assigntask",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "getUserTasks",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "change status",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "change priority",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "queues",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
