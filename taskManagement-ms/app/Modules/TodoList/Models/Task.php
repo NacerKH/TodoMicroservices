@@ -32,7 +32,7 @@ class Task extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'date_of_completion' => 'datetime',
+        'date_of_completion' => 'datetime:Y-m-d H:00',
         'updated_at' => 'datetime:Y-m-d H:00',
     ];
    
