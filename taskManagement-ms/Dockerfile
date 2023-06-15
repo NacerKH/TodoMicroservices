@@ -25,7 +25,7 @@ ADD php.ini /usr/local/etc/php
 
 
 COPY . /var/www
-
+ADD ./localDockerfiles/redis/redis.conf /usr/local/etc/redis/redis.conf
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 
 
