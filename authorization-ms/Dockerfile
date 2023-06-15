@@ -19,9 +19,11 @@ RUN apt-get update && \
     apt-get install -y libicu-dev && \
     docker-php-ext-install intl && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer && \
-    docker-php-ext-install bcmath
+    docker-php-ext-install bcmath && \
+    apt-get install -y supervisor 
 
 ADD php.ini /usr/local/etc/php
+ADD laravel-worker.conf /etc/supervisor/conf.d/worker.conf
 
 
 COPY . /var/www
