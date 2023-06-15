@@ -8,7 +8,7 @@ use App\Models\User;
 class BaseApiRepository
 {
     // Traits
-    use BaseApiResponse;
+    use BaseApiResponse,  FileAttachmentTrait;
 
 
     // /**
