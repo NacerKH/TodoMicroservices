@@ -4,4 +4,4 @@ supervisord -c /etc/supervisor/supervisord.conf
 supervisorctl -c /etc/supervisor/supervisord.conf
 supervisorctl reread
 supervisorctl update
-supervisorctl start laravel-worker:*
+supervisorctl start reminder-tasks-worker:*
