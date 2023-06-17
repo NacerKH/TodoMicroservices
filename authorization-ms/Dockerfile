@@ -23,20 +23,15 @@ RUN apt-get update && \
     apt-get install -y supervisor 
 
 ADD php.ini /usr/local/etc/php
-ADD laravel-worker.conf /etc/supervisor/conf.d/worker.conf
+ADD listen-events-worker.conf /etc/supervisor/conf.d/worker.conf
 
 
 COPY . /var/www
-
+ADD ./localDockerfiles/redis/redis.conf /usr/local/etc/redis/redis.conf
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 
 
 WORKDIR /var/www
 
-
-RUN chown -R www-data:www-data \
-  /var/www/storage \
-  /var/www/storage/* \
-  /var/www/bootstrap/cache \
 
 
