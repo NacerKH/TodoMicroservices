@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use App\Listeners\ChangeStatusTaskListener;
+
 use App\Modules\TodoList\Events\AssignedTaskEvent;
 use App\Modules\TodoList\Events\ChangeStatusTaskEvent;
 use App\Modules\TodoList\Listeners\AssignedTaskListener;
+use App\Modules\TodoList\Listeners\ChangeStatusTaskListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
