@@ -35,7 +35,7 @@ if [[ $compose_reply =~ ^[Yy]$ ]]; then
         cd "$dir" || exit
         pwd
         docker-compose -f local-compose.yml up -d --build --remove-orphans
-        docker-compose -f local-compose.yml logs -f &
+        # docker-compose -f local-compose.yml logs -f &
         echo "==========================="
         echo "🛑 Docker-compose exited with status $?" 
         cd ..
@@ -48,7 +48,7 @@ else
         cd "$dir" || exit
         pwd
         docker-compose up -d --build --remove-orphans
-        docker-compose logs -f &
+        # docker-compose logs -f &
         echo "==========================="
         echo "🛑 Docker-compose exited with status $?" 
         cd ..
