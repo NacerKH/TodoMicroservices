@@ -23,7 +23,7 @@ RUN apt-get update && \
     apt-get install -y supervisor 
    
 ADD php.ini /usr/local/etc/php
-ADD laravel-worker.conf /etc/supervisor/conf.d
+ADD reminder-tasks-worker.conf /etc/supervisor/conf.d
 
 COPY . /var/www
 ADD ./localDockerfiles/nginx/sites-available/default /etc/nginx/sites-available
@@ -35,9 +35,5 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 WORKDIR /var/www
 
 
-RUN chown -R www-data:www-data \
-  /var/www/storage \
-  /var/www/storage/* \
-  /var/www/bootstrap/cache \
-  && chmod +x /var/www/start-supervisor.sh
+
 

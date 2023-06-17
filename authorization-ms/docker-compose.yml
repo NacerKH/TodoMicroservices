@@ -1,17 +1,18 @@
 version: "3"
 services:
   #PHP Service
- todo-authorization:
+ todo-authorization-ms:
     build:
       context: .
       dockerfile: Dockerfile
     image: digitalocean.com/php
-    container_name: todo-authorization
+    container_name: todo-authorization-ms
     restart: unless-stopped
     tty: true
     environment:
+      APP_NAME: todo-authorization-ms
       APP_KEY: base64:20KjR77mhPY0DjEziiRYR+U2FrWvZSHfX6MVcHaMhPg=
-      SERVICE_NAME: todo-authorization
+      SERVICE_NAME: todo-authorization-ms
       SERVICE_TAGS: dev
       DB_HOST: todo-authorization-db
       DB_DATABASE: todo-authorization-db
@@ -48,8 +49,8 @@ services:
       (php artisan migrate --seed || true) &&
       (php artisan config:cache || true) &&
       (php artisan route:clear || true)  &&
-      (nginx -t && nginx) &&
-      php-fpm"
+      (nginx -t && nginx) &&  chown -R www-data:www-data   /var/www/storage/*  /var/www/bootstrap/cache  &&  chmod +x /var/www/start-supervisor.sh &&
+         ./start-supervisor.sh &&  php-fpm"
 
  todo-authorization-db:
     image: mysql:5.7.22

@@ -24,7 +24,7 @@ services:
       APP_URL: todo-webserver-gatway
       APP_DEBUG: "true"
       APP_LOG_LEVEL: debug
-      MS_AUTHORIZATION_URL: todo-authorization
+      MS_AUTHORIZATION_URL: todo-authorization-ms
       MS_TODO_URL: task-management-ms
     ports:
       - 6020:80
@@ -38,7 +38,7 @@ services:
       (php artisan migrate || true) &&
       (php artisan config:cache || true) &&
       (php artisan route:clear || true)  &&
-      (nginx -t && nginx) &&
+       (nginx -t && nginx) &&  chown -R www-data:www-data   /var/www/storage/*  /var/www/bootstrap/cache &&
       php-fpm"
 
  todo-gateway-db:

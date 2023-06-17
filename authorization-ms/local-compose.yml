@@ -1,17 +1,18 @@
 version: "3"
 services:
   #PHP Service
-  todo-authorization:
+  todo-authorization-ms:
     build:
       context: .
       dockerfile: Dockerfile.local
     image: digitalocean.com/php
-    container_name: todo-authorization
+    container_name: todo-authorization-ms
     restart: unless-stopped
     tty: true
     environment:
+      APP_NAME : todo-authorization-ms
       APP_KEY: base64:20KjR77mhPY0DjEziiRYR+U2FrWvZSHfX6MVcHaMhPg=
-      SERVICE_NAME: todo-authorization
+      SERVICE_NAME: todo-authorization-ms
       SERVICE_TAGS: dev
       DB_HOST: todo-db
       DB_DATABASE: todo-authorization-db
@@ -21,7 +22,7 @@ services:
       APP_ENV: local
       APP_DEBUG: "true"
       APP_LOG_LEVEL: debug
-      LOGIN_URL: todo-authorization
+      LOGIN_URL: todo-authorization-ms
       AUTHORIZATION_URL: /oauth/authorize
       TOKEN_URL: /oauth/token
       REFRESH_URL: /oauth/token/refresh
@@ -29,6 +30,7 @@ services:
       ACCEPTED_SECRETS : "gatwaySecret,gatwaySecret1"
       QUEUE_DRIVER: redis
       QUEUE_CONNECTION: redis
+      TASK_MANAGAMENT_MS_REDIS_HOST: redis
       REDIS_CLIENT: predis
       REDIS_HOST: redis
       REDIS_PORT: "6379"
@@ -38,7 +40,7 @@ services:
       MAIL_PORT : 2525
       MAIL_USERNAME: 1b98c7e3c5f851
       MAIL_PASSWORD: c234e6db71df88
-      MAIL_ENCRYPTION : tls
+      MAIL_ENCRYPTION : 
     ports:
       - 6023:80
     working_dir: /var/www
@@ -52,8 +54,9 @@ services:
       (php artisan migrate --seed || true) &&
       (php artisan config:cache || true) &&
       (php artisan route:clear || true)  &&
-      (nginx -t && nginx) &&
-      php-fpm"
+      (nginx -t && nginx) &&  chown -R www-data:www-data   /var/www/storage/*  /var/www/bootstrap/cache  &&  chmod +x /var/www/start-supervisor.sh &&
+       ./start-supervisor.sh &&  php-fpm"
+
 
 
 #Docker Networks

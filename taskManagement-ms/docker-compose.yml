@@ -12,6 +12,7 @@ services:
     depends_on:
       - task-management-db
     environment:
+      APP_NAME : task-management-ms
       APP_KEY: base64:20KjR77mhPY0DjEziiRYR+U2FrWvZSHfX6MVcHaMhPg=
       SERVICE_NAME: task-management-ms
       SERVICE_TAGS: dev
@@ -30,6 +31,7 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: "6379"
       BROADCAST_DRIVER : redis
+      APP_NAME_AUTHORIZATION_MS : todo-authorization-ms
     ports:
       - 6022:80
     working_dir: /var/www
@@ -39,10 +41,10 @@ services:
       - todo-network
     command: bash -c "
       (composer install || true) &&
-      (php artisan migrate || true) &&
+      (php artisan migrate --seed|| true) &&
       (php artisan config:cache || true) &&
       (php artisan route:clear || true)  &&
-      (nginx -t && nginx) &&
+      (nginx -t && nginx) &&  chown -R www-data:www-data   /var/www/storage/*  /var/www/bootstrap/cache  &&  chmod +x /var/www/start-supervisor.sh &&
       php-fpm"
 
  task-management-db:
