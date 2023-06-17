@@ -185,6 +185,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'Redis' => Illuminate\Support\Facades\Redis::class,
+
     ])->toArray(),
 
 ];
