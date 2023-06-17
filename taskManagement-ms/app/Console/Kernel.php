@@ -12,7 +12,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-       $schedule->command('task:events')->dailyAt('19:00');
+
+        if ( !app()->environment('production')) {
+            $schedule->command('task:events');
+
+        } else {
+            $schedule->command('task:events')->dailyAt('19:00');
+
+        }
     }
 
     /**
