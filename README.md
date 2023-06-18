@@ -27,7 +27,7 @@ Before running the script, make sure you have Docker and Docker Compose installe
 ### Design
 
 
-![Logo](https://github.com/khalifa-dv/TodoMicroservices/blob/b56ecb6aface099d0580ef38a475d6b940393779/Docs/Design.png)
+![Logo](https://github.com/khalifa-dv/TodoMicroservices/blob/main/Docs/Design.png)
 
 
 ### Steps
@@ -38,7 +38,7 @@ Before running the script, make sure you have Docker and Docker Compose installe
    ```
     - chmod +x start_microservices.sh
    ./start_microservices.sh
-   
+
    ```
 
 
