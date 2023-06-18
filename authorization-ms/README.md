@@ -1,4 +1,3 @@
-Apologies for the confusion. Here's an updated version of the README with commonly used emojis:
 
 # Microservice Authorization 🔒
 
