@@ -27,7 +27,7 @@ Before running the script, make sure you have Docker and Docker Compose installe
 ### Design
 
 
-![Logo](https://github.com/khalifa-dv/TodoMicroservices/tree/main/Docs/Design.png)
+![Logo](https://github.com/khalifa-dv/TodoMicroservices/blob/main/Docs/Design.png)
 
 
 ### Steps
