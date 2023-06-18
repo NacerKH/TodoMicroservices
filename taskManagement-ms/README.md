@@ -46,6 +46,8 @@ Both services are connected to an external Docker network named `todo-network`.
 
 The microservice exposes the following routes for task and to-do list management:
 
+ - Base Url : `http://localhost:6022/`
+
 - `GET /TaskManagement/list-task`: Retrieves all to-do lists.
 
 - `POST /TaskManagement/list-task`: Creates a new to-do list. ✨
