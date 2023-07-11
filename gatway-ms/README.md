@@ -46,7 +46,7 @@ The gateway service acts as an intermediary between client applications and the 
 - You can modify the routing logic to handle complex request routing scenarios.
 - Additional error handling and logging can be implemented to enhance the service's robustness and maintainability.
 
-Apologies for the confusion. Here's the revised version of the README file with the unnecessary YAML configuration removed:
+
 
 
 
